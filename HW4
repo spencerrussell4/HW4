@@ -1,0 +1,54 @@
+HW4
+1. Compute the response time and turnaround time when running three jobs of length 200 with the SJF and FIFO schedulers. 
+SJF - Response Time AVG: 200.0 Turnaround AVG: 400.0
+Full stats - 
+
+FIFO - Response Time AVG: 200.0 Turnaround AVG: 400.0
+Full stats - 
+
+
+2. Now do the same but with jobs of different lengths: 100, 200, and 300. 
+FIFO - Response Time AVG: 133.3 Turnaround AVG: 333.3
+Full stats -
+ 
+SJF - Response Time AVG: 133.3 Turnaround AVG: 333.3
+Full stats -
+
+3. Now do the same, but also with the RR scheduler and a time-slice of 1. 
+RR - Response AVG: 1.00 Turnaround AVG: 599.00
+Full Stats -
+PS C:\Users\MyNinjaJinja\Documents> python C:\Users\MyNinjaJinja\Documents\scheduler.py -p RR -l 200,200,200 -q 1 -c  
+ARG policy RR
+ARG jlist 200,200,200
+
+Here is the job list, with the run time of each job:
+  Job 0 ( length = 200.0 )
+  Job 1 ( length = 200.0 )
+  Job 2 ( length = 200.0 )
+
+
+** Solutions **
+
+Execution trace:
+  [ time   0 ] Run job   0 for 1.00 secs
+  [ time   1 ] Run job   1 for 1.00 secs
+  [ time   2 ] Run job   2 for 1.00 secs
+ …
+  [ time 597 ] Run job   0 for 1.00 secs ( DONE at 598.00 )
+  [ time 598 ] Run job   1 for 1.00 secs ( DONE at 599.00 )
+  [ time 599 ] Run job   2 for 1.00 secs ( DONE at 600.00 )
+
+Final statistics:
+  Job   0 -- Response: 0.00  Turnaround 598.00  Wait 398.00
+  Job   1 -- Response: 1.00  Turnaround 599.00  Wait 399.00
+  Job   2 -- Response: 2.00  Turnaround 600.00  Wait 400.00
+
+  Average -- Response: 1.00  Turnaround 599.00  Wait 399.00
+
+4. For what types of workloads does SJF deliver the same turnaround times as FIFO? 
+Workloads that have the same lengths and arrive in ascending order yield identical values between either SJF or FIFO. Changes occur when job lengths are not in ascending order as shown below.
+
+
+5. For what types of workloads and quantum lengths does SJF deliver the same response times as RR? The figures are the same when the time slice is larger than the longest job length and the jobs arrive in ascending length order. Evidence:
+
+
